@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        input[type="number"] {
+            width: 30%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #result {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+            z-index: 1000;
+        }
+        .alert-box.success {
+            background-color: #4CAF50;
+        }
+        .alert-box.error {
+            background-color: #f44336;
+        }
+        .alert-box p {
+            color: white;
+            font-size: 18px;
+            margin: 0;
+            margin-bottom: 15px;
+        }
+        .alert-box button {
+            background-color: white;
+            border: none;
+            color: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fraud Detection Model</h1>
+        <form id="inputForm">
+            <input type="number" name="feature1" placeholder="Time" required step="any">
+            <input type="number" name="feature2" placeholder="Feature 1" required step="any">
+            <input type="number" name="feature3" placeholder="Feature 2" required step="any">
+            <input type="number" name="feature4" placeholder="Feature 3" required step="any">
+            <input type="number" name="feature5" placeholder="Feature 4" required step="any">
+            <input type="number" name="feature6" placeholder="Feature 5" required step="any">
+            <input type="number" name="feature7" placeholder="Feature 6" required step="any">
+            <input type="number" name="feature8" placeholder="Feature 7" required step="any">
+            <input type="number" name="feature9" placeholder="Feature 8" required step="any">
+            <input type="number" name="feature10" placeholder="Feature 9" required step="any">
+            <input type="number" name="feature11" placeholder="Feature 10" required step="any">
+            <input type="number" name="feature12" placeholder="Feature 11" required step="any">
+            <input type="number" name="feature13" placeholder="Feature 12" required step="any">
+            <input type="number" name="feature14" placeholder="Feature 13" required step="any">
+            <input type="number" name="feature15" placeholder="Feature 14" required step="any">
+            <input type="number" name="feature16" placeholder="Feature 15" required step="any">
+            <input type="number" name="feature17" placeholder="Feature 16" required step="any">
+            <input type="number" name="feature18" placeholder="Feature 17" required step="any">
+            <input type="number" name="feature19" placeholder="Feature 18" required step="any">
+            <input type="number" name="feature20" placeholder="Feature 19" required step="any">
+            <input type="number" name="feature21" placeholder="Feature 20" required step="any">
+            <input type="number" name="feature22" placeholder="Feature 21" required step="any">
+            <input type="number" name="feature23" placeholder="Feature 22" required step="any">
+            <input type="number" name="feature24" placeholder="Feature 23" required step="any">
+            <input type="number" name="feature25" placeholder="Feature 24" required step="any">
+            <input type="number" name="feature26" placeholder="Feature 25" required step="any">
+            <input type="number" name="feature27" placeholder="Feature 26" required step="any">
+            <input type="number" name="feature28" placeholder="Feature 27" required step="any">
+            <input type="number" name="feature29" placeholder="Feature 28" required step="any">
+            <input type="number" name="feature30" placeholder="Amount" required step="any">
+            <button type="submit">Submit</button>
+        </form>
+        <p id="result"></p>
+    </div>
+    <div class="alert-box" id="alertBox">
+        <p id="alertMessage"></p>
+        <button onclick="document.getElementById('alertBox').style.display='none'">OK</button>
+    </div>
+    <script>
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    feature1: parseFloat(document.querySelector('input[name="feature1"]').value),
+                    feature2: parseFloat(document.querySelector('input[name="feature2"]').value),
+                    feature3: parseFloat(document.querySelector('input[name="feature3"]').value),
+                    feature4: parseFloat(document.querySelector('input[name="feature4"]').value),
+                    feature5: parseFloat(document.querySelector('input[name="feature5"]').value),
+                    feature6: parseFloat(document.querySelector('input[name="feature6"]').value),
+                    feature7: parseFloat(document.querySelector('input[name="feature7"]').value),
+                    feature8: parseFloat(document.querySelector('input[name="feature8"]').value),
+                    feature9: parseFloat(document.querySelector('input[name="feature9"]').value),
+                    feature10: parseFloat(document.querySelector('input[name="feature10"]').value),
+                    feature11: parseFloat(document.querySelector('input[name="feature11"]').value),
+                    feature12: parseFloat(document.querySelector('input[name="feature12"]').value),
+                    feature13: parseFloat(document.querySelector('input[name="feature13"]').value),
+                    feature14: parseFloat(document.querySelector('input[name="feature14"]').value),
+                    feature15: parseFloat(document.querySelector('input[name="feature15"]').value),
+                    feature16: parseFloat(document.querySelector('input[name="feature16"]').value),
+                    feature17: parseFloat(document.querySelector('input[name="feature17"]').value),
+                    feature18: parseFloat(document.querySelector('input[name="feature18"]').value),
+                    feature19: parseFloat(document.querySelector('input[name="feature19"]').value),
+                    feature20: parseFloat(document.querySelector('input[name="feature20"]').value),
+                    feature21: parseFloat(document.querySelector('input[name="feature21"]').value),
+                    feature22: parseFloat(document.querySelector('input[name="feature22"]').value),
+                    feature23: parseFloat(document.querySelector('input[name="feature23"]').value),
+                    feature24: parseFloat(document.querySelector('input[name="feature24"]').value),
+                    feature25: parseFloat(document.querySelector('input[name="feature25"]').value),
+                    feature26: parseFloat(document.querySelector('input[name="feature26"]').value),
+                    feature27: parseFloat(document.querySelector('input[name="feature27"]').value),
+                    feature28: parseFloat(document.querySelector('input[name="feature28"]').value),
+                    feature29: parseFloat(document.querySelector('input[name="feature29"]').value),
+                    feature30: parseFloat(document.querySelector('input[name="feature30"]').value),
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const alertBox = document.getElementById('alertBox');
+                const alertMessage = document.getElementById('alertMessage');
+                if (data.result === 'safe') {
+                    alertBox.className = 'alert-box success';
+                    alertMessage.textContent = 'Transaction is safe';
+                } else {
+                    alertBox.className = 'alert-box error';
+                    alertMessage.textContent = 'Fraudulent transaction detected';
+                }
+                alertBox.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
